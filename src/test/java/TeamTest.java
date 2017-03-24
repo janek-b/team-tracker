@@ -43,4 +43,16 @@ public class TeamTest {
     assertEquals(testTeam, Team.getTeam("team awesome"));
   }
 
+  @Test
+  public void getTeamMembers_returnsEmptyHashMap() {
+    assertEquals(0, testTeam.getTeamMembers().size());
+  }
+
+  @Test
+  public void addTeamMember_memberAddedToMemberMap() {
+    Member testMember = new Member("person1", "portland", "google", "java expert", "make cool things");
+    testTeam.addTeamMember(testMember);
+    assertTrue(testTeam.getTeamMembers().containsValue(testMember));
+  }
+
 }
