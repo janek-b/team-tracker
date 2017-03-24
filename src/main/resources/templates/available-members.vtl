@@ -1,5 +1,13 @@
 <!--available-members.vtl-->
 <div class="row">
+  <ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="/teams">Teams</a></li>
+    <li><a href="/teams/$team.getName()">$team.getName()</a></li>
+    <li class="active">Add Members</li>
+  </ol>
+</div>
+<div class="row">
   <div class="col-md-12">
     <form action="/teams/$team.getName()" method="post">
       <h3>Add members to team: $team.getName()</h3>

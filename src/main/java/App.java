@@ -22,7 +22,7 @@ public class App {
     get("/teams", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("teams", Team.all());
-      model.put("template", "templates/index.vtl");
+      model.put("template", "templates/teams.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -45,7 +45,7 @@ public class App {
         System.out.println("no members available");
       }
       model.put("teams", Team.all());
-      model.put("template", "templates/index.vtl");
+      model.put("template", "templates/teams.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -66,7 +66,7 @@ public class App {
           currentTeam.addTeamMember(Member.getMember(member));
         }
       } catch (NullPointerException e) {
-        System.out.println("no memebrs available");
+        System.out.println("no members available");
       }
       model.put("team", currentTeam);
       model.put("template", "templates/team.vtl");
@@ -86,6 +86,24 @@ public class App {
       model.put("team", Team.getTeam(request.params(":teamID")));
       model.put("member", Member.getMember(request.params(":memberID")));
       model.put("template", "templates/member.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/members/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/member-form.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/members", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String name = request.queryParams("name");
+      String from = request.queryParams("from");
+      String work = request.queryParams("work");
+      String specialities = request.queryParams("specialities");
+      String goals = request.queryParams("goal");
+      Member newMember = new Member(name, from, work, specialities, goals);
+      model.put("template", "templates/member-success.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

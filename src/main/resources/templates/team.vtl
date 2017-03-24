@@ -1,5 +1,12 @@
 <!--team.vtl-->
 <div class="row">
+  <ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="/teams">Teams</a></li>
+    <li class="active">$team.getName()</li>
+  </ol>
+</div>
+<div class="row">
   <div class="col-md-12">
     <h3>$team.getName()</h3>
     #if ($team.getTeamMembers().size() > 0)

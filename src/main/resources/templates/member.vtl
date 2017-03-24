@@ -1,5 +1,14 @@
 <!--member.vtl-->
 <div class="row">
+  <ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="/teams">Teams</a></li>
+    <li><a href="/teams/$team.getName()">$team.getName()</a></li>
+    <li><a href="/teams/$team.getName()">Members</a></li>
+    <li class="active">$member.getName()</li>
+  </ol>
+</div>
+<div class="row">
   <div class="col-md-12">
     <h3>$member.getName()</h3>
     <h5>Member of Team: $team.getName()</h5>
