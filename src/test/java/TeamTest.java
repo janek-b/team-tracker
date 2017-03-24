@@ -5,12 +5,12 @@ public class TeamTest {
   private Team testTeam;
 
   @Before
-  public void SetUp() {
+  public void setUp() {
     testTeam = new Team("team awesome");
   }
 
   @After
-  public void TearDown() {
+  public void tearDown() {
     testTeam = null;
     assertNull(testTeam);
     Team.clear();
