@@ -17,3 +17,12 @@ public class App {
 
   }
 }
+
+
+// /                                 index              -- list of all teams
+// /teams                            index              -- list of all teams
+// /teams/new                        teams-form         -- form to add a team
+// /teams/:teamid                    team               -- details for individual team
+// /teams/:teamid/members/new        available-members  -- form to add a member to a team
+// /teams/:teamid/members/:memberid  member             -- profile page for a team member
+// /members/new                      member-form        -- form to sign up a member to the event

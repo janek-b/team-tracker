@@ -62,4 +62,16 @@ public class MemberTest {
     assertEquals(testMember, Member.getMember("person1"));
   }
 
+  @Test
+  public void getAvailableMembers_returnsMembersNotOnATeam() {
+    assertTrue(Member.getAvailableMembers().contains(testMember));
+  }
+
+  @Test
+  public void recruitMember_removesMemberFromListOfAvailableMembers() {
+    assertTrue(Member.getAvailableMembers().contains(testMember));
+    testMember.recruitMember();
+    assertFalse(Member.getAvailableMembers().contains(testMember));
+  }
+
 }
