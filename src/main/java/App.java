@@ -8,9 +8,9 @@ public class App {
   public static void main(String[] args) {
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
-    Member member1 = new Member("person1", "portland", "google", "java expert", "make cool things");
-    Member member2 = new Member("person2", "denver", "amazon", "python expert", "have fun");
-    Member member3 = new Member("person3", "detroit", "netflix", "css expert", "learn something");
+    Member member1 = new Member(capitalize("person1"), "portland", "google", "java expert", "make cool things");
+    Member member2 = new Member(capitalize("person2"), "denver", "amazon", "python expert", "have fun");
+    Member member3 = new Member(capitalize("person3"), "detroit", "netflix", "css expert", "learn something");
 
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
@@ -35,7 +35,7 @@ public class App {
 
     post("/teams", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      Team newTeam = new Team(request.queryParams("name"));
+      Team newTeam = new Team(capitalize(request.queryParams("name")));
       String[] selectedMembers = request.queryParamsValues("members");
       try {
         for (String member : selectedMembers) {
@@ -97,7 +97,7 @@ public class App {
 
     post("/members", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      String name = request.queryParams("name");
+      String name = capitalize(request.queryParams("name"));
       String from = request.queryParams("from");
       String work = request.queryParams("work");
       String specialities = request.queryParams("specialities");
@@ -108,24 +108,13 @@ public class App {
     }, new VelocityTemplateEngine());
 
   }
+
+  public static String capitalize(String sentence) {
+    String[] words = sentence.split(" ");
+    String newSentence = "";
+    for (int i = 0; i < words.length; i++) {
+      newSentence = newSentence + Character.toUpperCase(words[i].charAt(0)) + words[i].substring(1).toLowerCase() + " ";
+    }
+    return newSentence.trim();
+  }
 }
-
-
-// /                                 index              -- list of all teams
-// /teams                            index              -- list of all teams
-// /teams/new                        team-form         -- form to add a team
-// /teams/:teamid                    team               -- details for individual team
-// /teams/:teamid/members/new        available-members  -- form to add a member to a team
-// /teams/:teamid/members/:memberid  member             -- profile page for a team member
-// /members/new                      member-form        -- form to sign up a member to the event
-
-// index
-//   list of teams
-//   link to member-form
-//   link to team-form
-// team
-//   link to teams
-//   link to available-members
-//   link to member
-// member
-//   link to team

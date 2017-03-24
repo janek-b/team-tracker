@@ -10,14 +10,15 @@
   </ol>
 </div>
 <div class="row">
-  <div class="col-md-12">
-    <h3>$member.getName()</h3>
-    <h5>Member of Team: $team.getName()</h5>
-    <h5>From: $member.getFrom()</h5>
-    <h5>Employer: $member.getWork()</h5>
-    <h5>Coding Specialities: $member.getSpecialities()</h5>
-    <h5>Goals for this event: $member.getGoals()</h5>
-
+  <div class="col-md-10 col-md-offset-1">
+    <div class="well">
+      <h3><span class="member-field">Name:</span>$member.getName()</h3>
+      <h5><span class="member-field">Member of Team:</span>$team.getName()</h5>
+      <h5><span class="member-field">From:</span>$member.getFrom()</h5>
+      <h5><span class="member-field">Employer:</span>$member.getWork()</h5>
+      <h5><span class="member-field">Coding Specialities:</span>$member.getSpecialities()</h5>
+      <h5><span class="member-field">Goals for this event:</span>$member.getGoals()</h5>
+    </div>
     <a class="btn btn-primary" href="/teams/$team.getName()">Return to Team</a>
   </div>
 </div>
