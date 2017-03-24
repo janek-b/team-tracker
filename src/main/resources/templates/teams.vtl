@@ -3,21 +3,28 @@
   <ol class="breadcrumb">
     <li><a href="/">Home</a></li>
     <li class="active">Teams</li>
+    <a class="pull-right btn btn-success btn-sm" href="/members/new">Sign up Now</a>
   </ol>
 </div>
 <div class="row">
-  #if ($teams)
-    #foreach ($team in $teams)
-      <h5><a href="/teams/$team.getName()">$team.getName()</a></h5>
-    #end
-  #end
+  <div class="col-md-10 col-md-offset-1">
+    <div class="well">
+      <h3>Current Teams</h3>
+      #if ($teams.size() > 0)
+        <ul>
+          #foreach ($team in $teams)
+            <li><a href="/teams/$team.getName()">$team.getName()</a></li>
+          #end
+        </ul>
+      #else
+        <h5>No teams have been created.</h5>
+      #end
+    </div>
+  </div>
 </div>
 <div class="row">
-  <div class="col-md-6">
-    <a class="btn btn-primary" href="/teams/new">Add a new Team</a>
-  </div>
-  <div class="col-md-6">
-    <a class="btn btn-primary" href="/members/new">Sign up a Member for the event</a>
+  <div class="col-md-3 col-md-offset-8">
+    <a class="btn btn-primary btn-block" href="/teams/new">Add a new Team</a>
   </div>
 </div>
 

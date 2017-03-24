@@ -5,20 +5,24 @@
     <li><a href="/teams">Teams</a></li>
     <li><a href="/teams/$team.getName()">$team.getName()</a></li>
     <li class="active">Add Members</li>
+    <a class="pull-right btn btn-success btn-sm" href="/members/new">Sign up Now</a>
   </ol>
 </div>
 <div class="row">
-  <div class="col-md-12">
-    <form action="/teams/$team.getName()" method="post">
-      <h3>Add members to team: $team.getName()</h3>
-      #if ($members.size() > 0)
-        <label for="members">Add Members</label>
+  <div class="col-md-10 col-md-offset-1">
+    #if ($members.size() > 0)
+      <form action="/teams/$team.getName()" method="post">
+        <h3>Add members to team: $team.getName()</h3>
+        <label for="members">Availble Members:</label>
         #foreach ($member in $members)
-          <h4><input type="checkbox" name="members" value="$member.getName()">$member.getName()</h4>
+          <h5><input type="checkbox" name="members" value="$member.getName()"> $member.getName()</h5>
         #end
-      #end
-      <button type="submit" class="btn btn-primary">Add members to team</button>
-    </form>
+        <button type="submit" class="btn btn-primary">Add members to team</button>
+      </form>
+    #else
+      <h5>No members available</h5>
+      <a class="btn btn-primary" href="/teams/$team.getName()">Return to Team</a>
+    #end
   </div>
 </div>
 

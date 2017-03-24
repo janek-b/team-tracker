@@ -2,21 +2,30 @@
 <div class="row">
   <ol class="breadcrumb">
     <li class="active">Home</li>
+    <a class="pull-right btn btn-success btn-sm" href="/members/new">Sign up Now</a>
   </ol>
 </div>
 <div class="row">
-  #if ($teams)
-    #foreach ($team in $teams)
-      <h5><a href="/teams/$team.getName()">$team.getName()</a></h5>
-    #end
-  #end
+  <div class="col-md-8 col-md-offset-2">
+    <div class="well">
+      <h3>What is Hackicodus?</h3>
+      <p>Hackicodus is Portlans’s biggest hackathon. 1,000 students from around the world come together at Epicodus to experiment, connect and create in 36 hours. This is an event for hackers who choose to learn because they can, and build because they love it. We’ll take care of all the details, just bring your creativity and watch your ideas come to life.</p>
+      <p>With industry leaders, world class judges, great food and a ton of hardware resources — you're in for an amazing time!</p>
+    </div>
+  </div>
 </div>
 <div class="row">
-  <div class="col-md-6">
-    <a class="btn btn-primary" href="/teams/new">Add a new Team</a>
+  <div class="col-md-8 col-md-offset-2">
+    <div class="well">
+      <h3>How it works.</h3>
+      <p>Students will split up into teams. Each team will tackle a different project. A trade show will be held at the end where everyone will get the chance to see each others work.</p>
+      <a class="btn btn-primary" href="/teams">View All Current Teams</a>
+    </div>
   </div>
-  <div class="col-md-6">
-    <a class="btn btn-primary" href="/members/new">Sign up a Member for the event</a>
+</div>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <a class="btn btn-success btn-block" href="/members/new">Sign up Now</a>
   </div>
 </div>
 

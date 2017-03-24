@@ -4,18 +4,23 @@
     <li><a href="/">Home</a></li>
     <li><a href="/teams">Teams</a></li>
     <li class="active">New Team</li>
+    <a class="pull-right btn btn-success btn-sm" href="/members/new">Sign up Now</a>
   </ol>
 </div>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-10 col-md-offset-1">
     <form action="/teams" method="post">
-      <label for="name">Enter the Team Name:</label>
-      <input type="text" name="name" id="name" class="form-control">
+      <div class="form-group">
+        <label for="name">Enter the Team Name:</label>
+        <input type="text" name="name" id="name" class="form-control">
+      </div>
       #if ($members.size() > 0)
-        <label for="members">Add Members</label>
-        #foreach ($member in $members)
-          <h4><input type="checkbox" name="members" value="$member.getName()">$member.getName()</h4>
-        #end
+        <div class="form-group">
+          <label for="members">Add Members</label>
+          #foreach ($member in $members)
+            <h5><input type="checkbox" name="members" value="$member.getName()"> $member.getName()</h5>
+          #end
+        </div>
       #end
       <button type="submit" class="btn btn-primary">Create Team</button>
     </form>
