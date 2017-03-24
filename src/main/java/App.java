@@ -6,8 +6,20 @@ import static spark.Spark.*;
 
 public class App {
   public static void main(String[] args) {
+
+    ProcessBuilder process = new ProcessBuilder();
+    Integer port;
+    if (process.environment().get("PORT") != null) {
+      port = Integer.parseInt(process.environment().get("PORT"));
+    } else {
+      port = 4567;
+    }
+
+    setPort(port);
+
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
+
     Member member1 = new Member(capitalize("person1"), "portland", "google", "java expert", "make cool things");
     Member member2 = new Member(capitalize("person2"), "denver", "amazon", "python expert", "have fun");
     Member member3 = new Member(capitalize("person3"), "detroit", "netflix", "css expert", "learn something");
