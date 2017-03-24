@@ -24,6 +24,7 @@ _This project is a website for a Startup weekend or hack-a-thon event. It has a 
 * _Clone the repository_
 * _Run the command 'gradle run'_
 * _Open browser and go to localhost:4567_
+* _The Application can also be viewed [here](https://morning-coast-78848.herokuapp.com/)_
 
 
 ### License
