@@ -1,3 +1,18 @@
 <!--index.vtl-->
+<div class="row">
+  #if ($teams)
+    #foreach ($team in $teams)
+      <h5><a href="/teams/$team.getName()">$team.getName()</a></h5>
+    #end
+  #end
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <a class="btn btn-primary" href="/teams/new">Add a new Team</a>
+  </div>
+  <div class="col-md-6">
+    <a class="btn btn-primary" href="/members/new">Sign up a Member for the event</a>
+  </div>
+</div>
 
 <!--index.vtl-->

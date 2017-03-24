@@ -1,0 +1,18 @@
+<!--team-form.vtl-->
+<div class="row">
+  <div class="col-md-12">
+    <form action="/teams" method="post">
+      <label for="name">Enter the Team Name:</label>
+      <input type="text" name="name" id="name" class="form-control">
+      #if ($members.size() > 0)
+        <label for="members">Add Members</label>
+        #foreach ($member in $members)
+          <h4><input type="checkbox" name="members" value="$member.getName()">$member.getName()</h4>
+        #end
+      #end
+      <button type="submit" class="btn btn-primary">Create Team</button>
+    </form>
+  </div>
+</div>
+
+<!--team-form.vtl-->
