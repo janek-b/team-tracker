@@ -22,6 +22,7 @@ public class Team {
 
   public void addTeamMember(Member newMember) {
     mTeamMembers.put(newMember.getName(), newMember);
+    newMember.recruitMember();
   }
 
 

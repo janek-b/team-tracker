@@ -1,3 +1,23 @@
 <!--team.vtl-->
-
+<div class="row">
+  <div class="col-md-12">
+    <h3>$team.getName()</h3>
+    #if ($team.getTeamMembers().size() > 0)
+      <h4>Team Members</h4>
+      <ul>
+        #foreach ($member in $team.getTeamMembers())
+          <li><a href="/teams/$team.getName()/members/$member.getName()">$member.getName()</a></li>
+        #end
+      </ul>
+    #else
+      <h4>This team does not have any members</h4>
+    #end
+    <a class="btn btn-primary" href="/teams/$team.getName()/members/new">Add Team Members</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <a class="btn btn-primary" href="/teams">View all Teams</a>
+  </div>
+</div>
 <!--team.vtl-->

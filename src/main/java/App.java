@@ -8,8 +8,18 @@ public class App {
   public static void main(String[] args) {
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
+    Member member1 = new Member("person1", "portland", "google", "java expert", "make cool things");
+    Member member2 = new Member("person2", "denver", "amazon", "python expert", "have fun");
+    Member member3 = new Member("person3", "detroit", "netflix", "css expert", "learn something");
 
     get("/", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("teams", Team.all());
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/teams", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("teams", Team.all());
       model.put("template", "templates/index.vtl");
@@ -32,10 +42,50 @@ public class App {
           newTeam.addTeamMember(Member.getMember(member));
         }
       } catch (NullPointerException e) {
-        System.out.println("no memers availale");
+        System.out.println("no members available");
       }
       model.put("teams", Team.all());
       model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/teams/:teamID", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      model.put("team", Team.getTeam(request.params(":teamID")));
+      model.put("template", "templates/team.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/teams/:teamID", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Team currentTeam = Team.getTeam(request.params(":teamID"));
+      String[] selectedMembers = request.queryParamsValues("members");
+      try {
+        for (String member : selectedMembers) {
+          currentTeam.addTeamMember(Member.getMember(member));
+        }
+      } catch (NullPointerException e) {
+        System.out.println("no memebrs available");
+      }
+      model.put("team", currentTeam);
+      model.put("template", "templates/team.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/teams/:teamID/members/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("team", Team.getTeam(request.params(":teamID")));
+      model.put("members", Member.getAvailableMembers());
+      model.put("template", "templates/available-members.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/teams/:teamID/members/:memberID", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("team", Team.getTeam(request.params(":teamID")));
+      model.put("member", Member.getMember(request.params(":memberID")));
+      model.put("template", "templates/member.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

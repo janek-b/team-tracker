@@ -1,3 +1,17 @@
 <!--available-members.vtl-->
+<div class="row">
+  <div class="col-md-12">
+    <form action="/teams/$team.getName()" method="post">
+      <h3>Add members to team: $team.getName()</h3>
+      #if ($members.size() > 0)
+        <label for="members">Add Members</label>
+        #foreach ($member in $members)
+          <h4><input type="checkbox" name="members" value="$member.getName()">$member.getName()</h4>
+        #end
+      #end
+      <button type="submit" class="btn btn-primary">Add members to team</button>
+    </form>
+  </div>
+</div>
 
 <!--available-members.vtl-->
